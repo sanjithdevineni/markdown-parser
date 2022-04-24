@@ -16,6 +16,12 @@ public class MarkdownParse {
             if (openBracket == -1) {
                 return toReturn;
             }
+            if (markdown.charAt(openBracket-1) == '!') {
+                openBracket = markdown.indexOf("[", openBracket+1);
+            }
+            if (openBracket == -1) {
+                return toReturn;
+            }
             int closeBracket = markdown.indexOf("]", openBracket);
             int finalOpenParen = markdown.indexOf("(", closeBracket);
             int finalCloseParen = markdown.indexOf(")", finalOpenParen);

@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.List.*;
 
 import static org.junit.Assert.*; // This line imports the JUnit assert class
 import org.junit.*; // This line imports all classes from JUnit?
@@ -41,7 +40,6 @@ public class MarkdownParseTest { // creates a new class
         ArrayList<String> expectedLinks = new ArrayList<String>();
         expectedLinks.add("https://google.com");
         expectedLinks.add("https://www.ucsd.edu");
-        expectedLinks.add("https://www.github.com");
         Path fileName = Path.of("test-file3.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
