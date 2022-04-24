@@ -16,8 +16,29 @@ public class MarkdownParse {
             int closeBracket = markdown.indexOf("]", openBracket);
             int finalOpenParen = markdown.indexOf("(", closeBracket);
             int finalCloseParen = markdown.indexOf(")", finalOpenParen);
-            toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
-            currentIndex = finalCloseParen + 1;
+            int nextOpenBracket = markdown.indexOf("[", finalOpenParen);
+            if (nextOpenBracket == -1) {
+                finalCloseParen = markdown.length() - 1;
+                toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
+                break;
+            }
+            else {
+                finalCloseParen = markdown.lastIndexOf(")", nextOpenBracket);
+                toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
+                currentIndex = finalCloseParen + 1;
+            }
+            /*
+            if (finalCloseParen == markdown.length() - 1) {
+                toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
+                break;
+            }
+            else {
+                int nextOpenBracket = markdown.indexOf("[", finalOpenParen);
+                finalCloseParen = markdown.lastIndexOf(")", nextOpenBracket);
+                toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
+                currentIndex = finalCloseParen + 1;
+            }
+            */
         }
         return toReturn;
     }
