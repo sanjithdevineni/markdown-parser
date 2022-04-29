@@ -1,3 +1,5 @@
+// javac -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. MarkdownParse.java MarkdownParseTest.java
+// java -cp lib/junit-4.13.2.jar:lib/hamcrest-core-1.3.jar:. org.junit.runner.JUnitCore MarkdownParseTest
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,7 +38,7 @@ public class MarkdownParseTest { // creates a new class
     }
 
     @Test
-    public void testfile4() throws IOException { 
+    public void testfile3() throws IOException { 
         ArrayList<String> expectedLinks = new ArrayList<String>();
         Path fileName = Path.of("test-file3.md");
         String content = Files.readString(fileName);
@@ -45,7 +47,7 @@ public class MarkdownParseTest { // creates a new class
     }
 
     @Test
-    public void testfile3() throws IOException { 
+    public void testfile4() throws IOException { 
         ArrayList<String> expectedLinks = new ArrayList<String>();
         expectedLinks.add("https://google.com");
         expectedLinks.add("https://www.ucsd.edu");
