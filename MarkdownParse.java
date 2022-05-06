@@ -36,6 +36,9 @@ public class MarkdownParse {
             int nextOpenBracket = markdown.indexOf("[", finalOpenParen);
             if (nextOpenBracket == -1) {
                 finalCloseParen = markdown.length() - 1;
+                if (finalOpenParen+1 > markdown.length()) {
+                    finalOpenParen = markdown.length();
+                }
                 toReturn.add(markdown.substring(finalOpenParen + 1, finalCloseParen));
                 break;
             }
