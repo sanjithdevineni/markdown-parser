@@ -35,7 +35,7 @@ public class MarkdownParse {
             int finalCloseParen = markdown.indexOf(")", finalOpenParen);
             int nextOpenBracket = markdown.indexOf("[", finalOpenParen);
             if (nextOpenBracket == -1) {
-                finalCloseParen = markdown.length() - 1;
+                finalCloseParen = markdown.lastIndexOf(")", markdown.length()-1);
                 if (finalOpenParen >= markdown.length()) {
                     finalOpenParen = finalOpenParen-1;
                 }
