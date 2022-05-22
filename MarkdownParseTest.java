@@ -9,6 +9,7 @@ import static org.junit.Assert.*; // This line imports the JUnit assert class
 import org.junit.*; // This line imports all classes from JUnit?
 
 public class MarkdownParseTest { // creates a new class
+
     @Test // marks as Test and informs JUnit that there is a test
     public void addition() { // creates method
         assertEquals(2, 1 + 1); // assertEquals method that performs the test
@@ -64,6 +65,50 @@ public class MarkdownParseTest { // creates a new class
         Path fileName = Path.of("test-file5.md");
         String content = Files.readString(fileName);
         ArrayList<String> links = MarkdownParse.getLinks(content);
+	    assertEquals(expectedLinks, links);
+    }
+
+    @Test
+    public void testSnippet1()throws IOException {
+        
+        ArrayList<String> expectedLinks = new ArrayList<String>();
+        Path fileName = Path.of("Snippet1.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+
+        expectedLinks.add("`google.com");
+        expectedLinks.add("google.com");
+        expectedLinks.add("ucsd.edu");
+
+	    assertEquals(expectedLinks, links);
+
+    }
+
+    @Test
+    public void testSnippet2()throws IOException {
+
+        ArrayList<String> expectedLinks = new ArrayList<String>();
+        Path fileName = Path.of("Snippet2.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+
+        expectedLinks.add("a.com");
+        expectedLinks.add("a.com(())");
+        expectedLinks.add("example.com");
+
+	    assertEquals(expectedLinks, links);
+    }
+
+    @Test
+    public void testSnippet3()throws IOException {
+
+        ArrayList<String> expectedLinks = new ArrayList<String>();
+        Path fileName = Path.of("Snippet3.md");
+        String content = Files.readString(fileName);
+        ArrayList<String> links = MarkdownParse.getLinks(content);
+
+        expectedLinks.add("https://sites.google.com/eng.ucsd.edu/cse-15l-spring-2022/schedule");
+
 	    assertEquals(expectedLinks, links);
     }
 }
